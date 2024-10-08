@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-
+const cookieParser = require("cookie-parser");
 //  port
 require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 //  middleware
 app.use(express.json());
-
+app.use(cookieParser());
 // connection to db
 require("./config/database").connect();
 
@@ -23,3 +23,9 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
+
+
+
+
+
+

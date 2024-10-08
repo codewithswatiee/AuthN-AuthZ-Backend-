@@ -32,13 +32,14 @@ exports.signup = async (req, res) => {
             name, email, password: hashedPassword, role
         })
         
-        res.status(200).json({
+        res.status(201).json({
             success: true,
+            user,
             message: "User Created successfully",
         })
     } catch(err){
         console.error(err);
-        res.status(500).json({
+        res.status(400).json({
             success: false,
             message: "User can't be registered! Please try again later"
         })
@@ -59,7 +60,7 @@ exports.login = async (req, res) => {
         if(!user){
             return res.status(400).json({
                 success: false,
-                message: "Invalid Email or Password",
+                message: "Invalid Email",
             })
         }
         const payload = {
